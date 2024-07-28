@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const adminmodel = require("../Edu-Tech-/models/admin_model")
-const student_model = require("../public/models/student_model")
-const assignment_model = require("../public/models/assignment_model")
-const notice_model = require('../public/models/notice_model');
-const exam_model = require('../public/models/exam_model');
-const admincontroller = require("../public/controller/admin_controller")
-const studentcontroller = require("../public/controller/student_controller")
-const teachercontroller = require("../public/controller/teacher_controller")
+const student_model = require("../Edu-Tech-/models/student_model")
+const assignment_model = require("../Edu-Tech-/models/assignment_model")
+const notice_model = require('../Edu-Tech-/models/notice_model');
+const exam_model = require('../Edu-Tech-/models/exam_model');
+const admincontroller = require("../Edu-Tech-/controller/admin_controller")
+const studentcontroller = require("../Edu-Tech-/controller/student_controller")
+const teachercontroller = require("../Edu-Tech-/controller/teacher_controller")
 const app = express();
-const teacher_model = require("../public/models/teacher_model")
+const teacher_model = require("../Edu-Tech-/models/teacher_model")
 
 
 const PDFDocument = require('pdfkit');
@@ -154,7 +154,7 @@ router.post('/teacher_dashboard', teachercontroller.login_teacher)
 //         });
 // });
 
-// const Assignment = require('../public/models/assignment_model');
+// const Assignment = require('../Edu-Tech-/models/assignment_model');
 // router.get('/teacher_assignment', (req, res) => {
 
 //     res.render('../views/mainpage/teacher/teacher_assignment')
@@ -215,7 +215,7 @@ router.get('/teacher_exam', (req, res) => {
     res.render('../views/mainpage/teacher/teacher_exam')
 })
 
-const Exam = require('../public/models/exam_model');
+const Exam = require('../Edu-Tech-/models/exam_model');
 
 router.post('/teacher_exam',(req, res) => {
     const { examName, examLink } = req.body;
@@ -449,7 +449,7 @@ router.get('/api/teachers/pdf', async (req, res) => {
 
 // notice post
 // router.post('/notices',admincontroller.uploadNotice)
-const Notice = require('../public/models/notice_model');
+const Notice = require('../Edu-Tech-/models/notice_model');
 
 // POST request to store a new notice in MongoDB
 router.post('/notices', (req, res) => {
