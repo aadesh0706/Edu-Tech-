@@ -215,7 +215,7 @@ router.get('/teacher_exam', (req, res) => {
     res.render('../views/mainpage/teacher/teacher_exam')
 })
 
-const Exam = require('../Edu-Tech-/models/exam_model');
+const Exam = require('./models/exam_model');
 
 router.post('/teacher_exam',(req, res) => {
     const { examName, examLink } = req.body;
@@ -449,7 +449,7 @@ router.get('/api/teachers/pdf', async (req, res) => {
 
 // notice post
 // router.post('/notices',admincontroller.uploadNotice)
-const Notice = require('../Edu-Tech-/models/notice_model');
+const Notice = require('./models/notice_model');
 
 // POST request to store a new notice in MongoDB
 router.post('/notices', (req, res) => {
