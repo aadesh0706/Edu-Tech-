@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const adminmodel = require("../Edu-Tech-/models/admin_model")
-const student_model = require("../Edu-Tech-/models/student_model")
-const assignment_model = require("../Edu-Tech-/models/assignment_model")
-const notice_model = require('../Edu-Tech-/models/notice_model');
-const exam_model = require('../Edu-Tech-/models/exam_model');
-const admincontroller = require("../Edu-Tech-/controller/admin_controller")
-const studentcontroller = require("../Edu-Tech-/controller/student_controller")
-const teachercontroller = require("../Edu-Tech-/controller/teacher_controller")
+const adminmodel = require("./models/admin_model")
+const student_model = require("./models/student_model")
+const assignment_model = require("./models/assignment_model")
+const notice_model = require('./models/notice_model');
+const exam_model = require('./models/exam_model');
+const admincontroller = require("./controller/admin_controller")
+const studentcontroller = require("./controller/student_controller")
+const teachercontroller = require("./controller/teacher_controller")
 const app = express();
-const teacher_model = require("../Edu-Tech-/models/teacher_model")
+const teacher_model = require("./models/teacher_model")
 
 
 const PDFDocument = require('pdfkit');
