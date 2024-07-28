@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path')
 const cookieparser = require("cookie-parser")
 const app = express();
-
+const port =5000;
 mongoose.set('strictQuery', false);
 
 
@@ -15,7 +15,7 @@ mongoose.connect("mongodb+srv://aadeshgulumbe3:Aadesh123@cluster0.izx25hd.mongod
     useNewUrlParser: true
 })
     .then(() => console.log("MongoDb is connected")) 
-    .then(()=> console.log('http://localhost:8090'))
+    // .then(()=> console.log('http://localhost:8090'))
     .catch(err => console.log(err))
 
 // set up EJS as the view engine
@@ -34,6 +34,6 @@ const routes = require('./routes');
 app.use('/', routes);
 
 // start the server
-const PORT = process.env.PORT || 8090;
+const PORT = process.env.PORT || port ;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 console.log('http://localhost:8090');
