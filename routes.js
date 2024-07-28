@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const adminmodel = require("../public/models/admin_model")
+const adminmodel = require("../Edu-Tech-/models/admin_model")
 const student_model = require("../public/models/student_model")
 const assignment_model = require("../public/models/assignment_model")
 const notice_model = require('../public/models/notice_model');
