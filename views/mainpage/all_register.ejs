@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dropdown Menu onclick Example</title>
+    <!-- Clicky Menus CSS -->
+    <link rel="stylesheet" href="/views/mainpage/all_register1.css">
+
+</head>
+
+<body>
+    <main>
+
+        <header class="intro">
+            <h1> Users </h1>
+            <p> Login And Registration here to access Edu-Tech Services </p>
+        </header>
+
+        <nav id="site-navigation" class="site-navigation" aria-label="Clickable Menu Demonstration">
+            <ul class="main-menu clicky-menu no-js">
+                <li>
+                    <a href="#">
+                        Admin
+                        <svg aria-hidden="true" width="16" height="16">
+                            <use xlink:href="#arrow" />
+                        </svg>
+                    </a>
+                    <ul>
+                        <li><a href="/admin_register">Registration</a></li>
+                        <li><a href="/admin_login">Login</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        Teacher
+                        <svg aria-hidden="true" width="16" height="16">
+                            <use xlink:href="#arrow" />
+                        </svg>
+                    </a>
+                    <ul>
+                        <li><a href="/teacher_register">Registration</a></li>
+                        <li><a href="/teacher_login">Login</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        Student
+                        <svg aria-hidden="true" width="16" height="16">
+                            <use xlink:href="#arrow" />
+                        </svg>
+                    </a>
+                    <ul>
+                        <li><a href="/student_register">Registration</a></li>
+                        <li><a href="/student_login">Login</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </main>
+
+</body>
+
+<style>
+    /**
+ * Initial state, hidden off screen
+ */
+.clicky-menu ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+  /*[1]*/
+}
+
+/**
+ * No JS fallback
+ *
+ * Triggers menus on hover rather than click. Supports keyboard navigation in modern browsers.
+ */
+.clicky-menu.no-js li:hover > ul {
+  visibility: visible;
+}
+
+.clicky-menu.no-js li:focus-within > ul {
+  /*[2]*/
+  visibility: visible;
+}
+
+/**
+ * Open/Close Menu Behavior with JS
+ */
+.clicky-menu ul[aria-hidden=false] {
+  visibility: visible;
+}
+
+/* Prevent offscreen-submenus */
+.clicky-menu .sub-menu--right {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/**
+ * Footnotes
+ *
+ * [1] Using `visibility` instead of `display` allows for easier transitions and animation of submenus
+ * [2] Must be a separate ruleset so that hover works in non-modern browsers
+ */
+
+
+/* Hidden SVG used for down arrows */
+svg[hidden] {
+  display: none;
+  position: absolute;
+}
+
+.site-navigation {
+  width: 86%;
+  max-width: 782px;
+  margin: 100px auto 300px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.clicky-menu {
+  justify-content: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 540px) {
+  .clicky-menu {
+    display: flex;
+  }
+}
+/* General Link & Button Styles */
+.clicky-menu a,
+.clicky-menu button {
+  margin: 0.25em;
+  padding: 1em;
+  background: transparent;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: inherit;
+  border-radius: 3px;
+}
+
+.clicky-menu a:hover,
+.clicky-menu button:hover {
+  background: #fff;
+}
+
+.clicky-menu a:focus,
+.clicky-menu button:focus {
+  outline: 0.125em dotted purple;
+  outline-offset: -0.125em;
+}
+
+/* Top Level Items */
+.clicky-menu > li {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: stretch;
+  flex-wrap: wrap;
+}
+
+.clicky-menu > li > a,
+.clicky-menu > li > button {
+  flex: 1 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 0;
+  font-size: inherit;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+@media (min-width: 540px) {
+  .clicky-menu > li > a,
+.clicky-menu > li > button {
+    justify-content: center;
+  }
+}
+/* Icon */
+.clicky-menu svg {
+  width: 1em;
+  height: 1em;
+  margin-left: 0.5em;
+}
+
+.clicky-menu [aria-expanded=true] svg {
+  transform: scaleY(-1);
+}
+
+/* Submenu Styles */
+.clicky-menu ul {
+  min-width: 100%;
+  width: 12em;
+  margin-top: 0.25em;
+  padding: 0;
+  list-style: none;
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+@media (min-width: 540px) {
+  .clicky-menu {
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+/* Responsive Submenu Behavior */
+.clicky-menu ul[aria-hidden=false] {
+  position: static;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+@media (min-width: 540px) {
+  .clicky-menu ul[aria-hidden=false] {
+    position: absolute;
+    width: auto;
+  }
+}
+/* Submenu Links */
+.clicky-menu ul a {
+  display: block;
+  padding-top: 0.375em;
+  padding-bottom: 0.375em;
+}
+
+@media (min-width: 540px) {
+  .clicky-menu ul a {
+    padding: 0.375em 1em;
+    white-space: nowrap;
+  }
+}
+.github {
+  text-align: center;
+}
+.github a {
+  color: #fff;
+  opacity: 0.6;
+}
+.github a:hover, .github a:focus {
+  opacity: 1;
+}
+
+</style>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+*{ margin: 0; padding: 0;}
+body{
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-smoothing: antialiased;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  background: linear-gradient(17deg, teal, purple, orange) center/cover no-repeat;
+
+}
+
+.intro{
+   background: #fff;
+   padding: 60px 30px;
+   color: #333;
+   margin-bottom: 15px;
+   line-height: 1.5;
+   text-align: center;
+}
+.intro h1 {
+   font-size: 18pt;
+   padding-bottom: 15px;
+
+}
+.intro p{
+   font-size: 14px;
+}
+
+.action{
+   text-align: center;
+   display: block;
+   margin-top: 20px;
+}
+
+a.btn {
+  text-decoration: none;
+  color: #666;
+   border: 2px solid #666;
+   padding: 10px 15px;
+   display: inline-block;
+   margin-left: 5px;
+}
+a.btn:hover{
+   background: #666;
+   color: #fff;
+    transition: .3s;
+-webkit-transition: .3s;
+}
+.btn:before{
+  font-family: FontAwesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+.github:before{content: "\f09b"}
+.down:before{content: "\f019"}
+.back:before{content:"\f112"}
+.credit{
+    background: #fff;
+    padding: 12px;
+    font-size: 9pt;
+    text-align: center;
+    color: #333;
+    margin-top: 40px;
+
+}
+.credit span:before{
+   font-family: FontAwesome;
+   color: #e41b17;
+   content: "\f004";
+
+
+}
+.credit a{
+   color: #333;
+   text-decoration: none;
+}
+.credit a:hover{
+   color: #1DBF73; 
+}
+.credit a:hover:after{
+    font-family: FontAwesome;
+    content: "\f08e";
+    font-size: 9pt;
+    position: absolute;
+    margin: 3px;
+}
+main{
+  padding:: 20px;
+}
+
+article li{
+   color: #444;
+   font-size: 15px;
+   margin-left: 33px;
+   line-height: 1.5;
+   padding: 5px;
+}
+article h1,
+article h2,
+article h3,
+article h4,
+article p{
+   padding: 14px;
+   color: #333;
+}
+article p{
+   font-size: 15px;
+    line-height: 1.5;
+}
+ 
+@media only screen and (min-width: 720px){
+    main{
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto; 
+      padding: 24px;
+    }
+
+
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky {
+	cursor: pointer;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 15px;
+	color: #333;
+	font-size: 16px;
+}
+.set-overlayer:after,
+.set-glass:after,
+.to-active:after,
+.set-sticky:after {
+	font-family: FontAwesome;
+	font-size: 18pt;
+	position: relative;
+	float: right;
+}
+.set-overlayer:after,
+.set-glass:after,
+.set-sticky:after {
+	content: "\f204";
+	transition: .6s;
+}
+
+.to-active:after {
+	content: "\f205";
+	color: #008080;
+	transition: .6s;
+}
+.set-overlayer,
+.set-glass,
+.set-sticky,
+.source,
+.theme-tray {
+	margin: 10px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	border: 2px solid #f1f1f1;
+	box-sizing: border-box;
+}
+/* Syntax Highlighter*/
+
+pre.prettyprint {
+	padding: 15px !important;
+   margin: 10px;
+	border: 0 !important;
+  background: #f2f2f2;
+  overflow: auto;
+}
+
+.source {
+	white-space: pre;
+	overflow: auto;
+	max-height: 400px;
+}
+code{
+    border:1px solid #ddd;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+</style>
+</html>

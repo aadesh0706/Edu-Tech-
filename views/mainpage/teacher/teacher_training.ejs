@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edu-Tech Training and Placement</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/tailwind.output.css" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="../../assets/js/init-alpine.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+      defer
+    ></script>
+    <script src="./assets/js/charts-lines.js" defer></script>
+    <script src="./assets/js/charts-pie.js" defer></script>
+  </head>
+  <body>
+    <div
+      class="flex h-screen bg-gray-50 dark:bg-gray-900"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      <!-- Desktop sidebar -->
+      <aside
+        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+      >
+        <div class="py-4 text-gray-500 dark:text-gray-400">
+          <a href="/teacher_dashboard">
+            <img src="./logo.png" style="height: 60%; width: 60%;" alt="">
+          </a>
+
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="/teacher_dashboard"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/teacher_leaderboard"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path>
+                </svg>
+                <span class="ml-4">Leaderboard</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="cards.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+
+                <span class="ml-4">peer Learning</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="./dist/index.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+                <span class="ml-4">Assignments</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="./dist/index.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                  ></path>
+                  <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                </svg>
+
+                <span class="ml-4">Online Exam</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/academic_planning"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                  ></path>
+                  <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                </svg>
+                <span class="ml-4">Academic Planning</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/teacher_profile"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  ></path>
+                </svg>
+
+                <span class="ml-4">My Profile</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/stu_tea_noticeboard"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  ></path>
+                </svg>
+                <span class="ml-4">Notice Board</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/events"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+
+                <span class="ml-4">Events</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/institute"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="ml-4">Institute</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/feedback"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+
+                <span class="ml-4">Feedback</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <span
+              class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+              aria-hidden="true"
+            ></span>
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/teacher_training"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+                <span class="ml-4">Training And Placement</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+                <a
+                  class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                  aria-haspopup="true" href="/teacher_login"
+                >
+                <span class="inline-flex items-center">
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                    ></path>
+                  </svg>
+
+                  <span class="ml-4">Sign out</span>
+              </a>
+            </li>
+      </aside>
+      <!-- Mobile sidebar -->
+      <!-- Backdrop -->
+      <div
+        x-show="isSideMenuOpen"
+        x-transition:enter="transition ease-in-out duration-150"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in-out duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
+      ></div>
+      <aside
+        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+        x-show="isSideMenuOpen"
+        x-transition:enter="transition ease-in-out duration-150"
+        x-transition:enter-start="opacity-0 transform -translate-x-20"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in-out duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0 transform -translate-x-20"
+        @click.away="closeSideMenu"
+        @keydown.escape="closeSideMenu"
+      >
+        <div class="py-4 text-gray-500 dark:text-gray-400">
+          <a href="/teacher_dashboard" class="">
+            <div class="py-4 text-gray-500 dark:text-gray-400">
+              <img src="./logo.png" style="height: 60%; width: 60%;" alt="">
+          </a>
+          
+            
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="index.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/teacher_leaderboard"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path>
+                </svg>
+                <span class="ml-4">Leaderboard</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="./dist/index.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+                
+      
+                <span class="ml-4">Peer Learning</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="./dist/index.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+                
+      
+                <span class="ml-4">Assignments</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="./dist/index.html"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                  ></path>
+                  <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                </svg>
+
+                <span class="ml-4">Online Exam</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/academic_planning"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                  ></path>
+                  <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                </svg>
+
+                <span class="ml-4">Academic Planning</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/teacher_profile"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  ></path>
+                </svg>
+
+                <span class="ml-4">My Profile</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/stu_tea_noticeboard"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  ></path>
+                </svg>
+                <span class="ml-4">Notice Board</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/events"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="ml-4">Events</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/institute"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="ml-4">Institute</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/feedback"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+
+                <span class="ml-4">Feedback</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <span
+              class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+              aria-hidden="true"
+            ></span>
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="/teacher_training"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+                <span class="ml-4">Training And Placement</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+                <a
+                  class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                  aria-haspopup="true" href="/teacher_login"
+                >
+                <span class="inline-flex items-center">
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                    ></path>
+                  </svg>
+
+                  <span class="ml-4">Sign out</span>
+              </a>
+            </li>
+          </div>
+      </aside>
+      <div class="flex flex-col flex-1 w-full">
+        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+          <div
+            class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+          >
+            <!-- Mobile hamburger -->
+            <button
+              class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+              @click="toggleSideMenu"
+              aria-label="Menu"
+            >
+              <svg
+                class="w-6 h-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <!-- Search input -->
+            <div class="flex justify-center flex-1 lg:mr-32">
+              <div
+                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
+              >
+                <div class="absolute inset-y-0 flex items-center pl-2">
+                  <svg
+                    class="w-4 h-4"
+                    aria-hidden="true"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                  type="text"
+                  placeholder="Search for projects"
+                  aria-label="Search"
+                />
+              </div>
+            </div>
+            <ul class="flex items-center flex-shrink-0 space-x-6">
+              <!-- Theme toggler -->
+              <li class="flex">
+                <button
+                  class="rounded-md focus:outline-none focus:shadow-outline-purple"
+                  @click="toggleTheme"
+                  aria-label="Toggle color mode"
+                >
+                  <template x-if="!dark">
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                      ></path>
+                    </svg>
+                  </template>
+                  <template x-if="dark">
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </template>
+                </button>
+              </li>
+              
+              <!-- Profile menu -->
+              <li class="relative">
+                <button
+                  class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                  @click="toggleProfileMenu"
+                  @keydown.escape="closeProfileMenu"
+                  aria-label="Account"
+                  aria-haspopup="true"
+                >
+                  <img
+                    class="object-cover w-8 h-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <template x-if="isProfileMenuOpen">
+                  <ul
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    @click.away="closeProfileMenu"
+                    @keydown.escape="closeProfileMenu"
+                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                    aria-label="submenu"
+                  >
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="/teacher_profile"
+                      >
+                        <svg
+                          class="w-4 h-4 mr-3"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <span>Profile</span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="./teacher_login"
+                      >
+                        <svg
+                          class="w-4 h-4 mr-3"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                          ></path>
+                        </svg>
+                        <span>Log out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+              </li>
+            </ul>
+          </div>
+        </header>
+        <main class="h-full overflow-y-auto">
+        
+            <div class="tab-pane active" id="campus-drives"><h3 class="text-uppercase">Campus Drives 2021-22:</h3>
+                    <div class="dez-separator-outer ">
+                        <div class="dez-separator bg-primary style-liner">&nbsp;</div>
+                    </div>
+                    <table class="table table-bordered mfp-gallery">
+                    <tbody><tr class="pricingtable-title">
+                        <th>SR. No.</th>
+                        <th>Logo</th>
+                        <th>Name Of Company</th>
+                        <th>Details</th>
+                    </tr><tr>
+                            <td>1</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654251201.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654251201.png" alt="" style="width:80px"></a></td> 
+                            <td>Tech Mahindra Cerium Systems</td>
+                            <td>ENTC : Package: 3.60 LPA</td>
+                        </tr><tr>
+                            <td>2</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654251114.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654251114.png" alt="" style="width:80px"></a></td> 
+                            <td>Tessolve Semiconductor</td>
+                            <td>ENTC &amp; Electrical: Package: 4.00 LPA </td>
+                        </tr><tr>
+                            <td>3</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654251041.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654251041.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Gestamp Automotive</td>
+                            <td>MECH &amp; Electrical: Package : 3.00 LPA </td>
+                        </tr><tr>
+                            <td>4</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250987.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250987.jpg" alt="" style="width:80px"></a></td> 
+                            <td>iAsys Technology solutions pvt ltd</td>
+                            <td>COMP &amp; IT : Package: 3.40 LPA</td>
+                        </tr><tr>
+                            <td>5</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250928.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250928.png" alt="" style="width:80px"></a></td> 
+                            <td>Wipro</td>
+                            <td>All Branches : Package: 3.60 LPA</td>
+                        </tr><tr>
+                            <td>6</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250888.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250888.png" alt="" style="width:80px"></a></td> 
+                            <td>Capgemini</td>
+                            <td>All Branches : Package: 4.00  LPA</td>
+                        </tr><tr>
+                            <td>7</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250842.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250842.png" alt="" style="width:80px"></a></td> 
+                            <td>Infosys</td>
+                            <td>All Branches : Package: 3.60 LPA</td>
+                        </tr><tr>
+                            <td>8</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250803.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250803.png" alt="" style="width:80px"></a></td> 
+                            <td>TATA Consultancy Services</td>
+                            <td>All Branches: Package: 3.36 LPA</td>
+                        </tr><tr>
+                            <td>9</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250730.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250730.png" alt="" style="width:80px"></a></td> 
+                            <td>Tech Mahindra</td>
+                            <td>COMP, IT, &amp; ENTC Package: 3.50 LPA </td>
+                        </tr><tr>
+                            <td>10</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250673.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250673.png" alt="" style="width:80px"></a></td> 
+                            <td>Persistent Systems</td>
+                            <td>ENTC, COMP &amp; IT: Package: 4.71 LPA</td>
+                        </tr><tr>
+                            <td>11</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250616.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250616.jpg" alt="" style="width:80px"></a></td> 
+                            <td>ADS Technologies</td>
+                            <td>ENTC &amp; Electrical: Package: 1.80 LPA </td>
+                        </tr><tr>
+                            <td>12</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250550.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250550.png" alt="" style="width:80px"></a></td> 
+                            <td>Pinclick </td>
+                            <td>All Branches: Package: 4.50 LPA </td>
+                        </tr><tr>
+                            <td>13</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250152.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250152.png" alt="" style="width:80px"></a></td> 
+                            <td>Virtusa</td>
+                            <td>All Branches: Package: 6.50 &amp; 4.50 LPA</td>
+                        </tr><tr>
+                            <td>14</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250080.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250080.png" alt="" style="width:80px"></a></td> 
+                            <td>Atos Syntel</td>
+                            <td>COMP, ENTC &amp; IT : Package: 3.40 LPA</td>
+                        </tr><tr>
+                            <td>15</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654250010.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654250010.jpg" alt="" style="width:80px"></a></td> 
+                            <td>zensoft services</td>
+                            <td>Comp, ENTC &amp; IT: Package: 4.50 LPA </td>
+                        </tr><tr>
+                            <td>16</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249945.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249945.png" alt="" style="width:80px"></a></td> 
+                            <td>Quality Kiosk</td>
+                            <td>All Branches : Package: 3.00 LPA</td>
+                        </tr><tr>
+                            <td>17</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249891.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249891.png" alt="" style="width:80px"></a></td> 
+                            <td>Squre Yards</td>
+                            <td>All Branches : Package: 4.50 LPA</td>
+                        </tr><tr>
+                            <td>18</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249828.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249828.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Quick Heal </td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>19</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249782.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249782.jpg" alt="" style="width:80px"></a></td> 
+                            <td>PARI Robotics</td>
+                            <td>MECH, Electrical &amp; ENTC: Package: 2.40 LPA </td>
+                        </tr><tr>
+                            <td>20</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249691.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249691.png" alt="" style="width:80px"></a></td> 
+                            <td>Quest Global </td>
+                            <td>COMP, ENTC, Electrical &amp; ENTC: Package: 3.50 LPA </td>
+                        </tr><tr>
+                            <td>21</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249628.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249628.png" alt="" style="width:80px"></a></td> 
+                            <td>Face Prep</td>
+                            <td>All Branches: Package: 3.00 LPA </td>
+                        </tr><tr>
+                            <td>22</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249569.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249569.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Midas Autosoft Engineers pvt. ltd</td>
+                            <td>MECH: Package : 3.00 LPA </td>
+                        </tr><tr>
+                            <td>23</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249433.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249433.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Amdocs </td>
+                            <td>COMP &amp; IT : Package: 5.00 LPA</td>
+                        </tr><tr>
+                            <td>24</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249383.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249383.png" alt="" style="width:80px"></a></td> 
+                            <td>Relaince Jio Platforms</td>
+                            <td>MECH, COMP, ENTC &amp; IT: Package: 4.00 LPA</td>
+                        </tr><tr>
+                            <td>25</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249307.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249307.png" alt="" style="width:80px"></a></td> 
+                            <td>Sears Holdings</td>
+                            <td>COMP &amp; IT : Package: 5.00 LPA</td>
+                        </tr><tr>
+                            <td>26</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249249.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249249.png" alt="" style="width:80px"></a></td> 
+                            <td>Evosys</td>
+                            <td>All Branches : Package: 3.60 LPA</td>
+                        </tr><tr>
+                            <td>27</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249175.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249175.png" alt="" style="width:80px"></a></td> 
+                            <td>Makerstrive Engineering private limited</td>
+                            <td>MECH : Package: 3.50 LPA </td>
+                        </tr><tr>
+                            <td>28</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249112.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249112.jpg" alt="" style="width:80px"></a></td> 
+                            <td>ADP Engineers</td>
+                            <td>MECH &amp; Electrical: Package : 1.80</td>
+                        </tr><tr>
+                            <td>29</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654249028.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654249028.png" alt="" style="width:80px"></a></td> 
+                            <td>Zensar Technologies</td>
+                            <td>COMP &amp; IT : Package: 4.00 LPA</td>
+                        </tr><tr>
+                            <td>30</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/" alt="" style="width:80px"></a></td> 
+                            <td>HCL Technologies</td>
+                            <td>COMP &amp; IT : Package: 3.65 LPA</td>
+                        </tr><tr>
+                            <td>31</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248923.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248923.png" alt="" style="width:80px"></a></td> 
+                            <td>Tudip Technologies</td>
+                            <td> All Branches: Package : 3.50 LPA </td>
+                        </tr><tr>
+                            <td>32</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248867.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248867.png" alt="" style="width:80px"></a></td> 
+                            <td>Deloitte</td>
+                            <td>COMP &amp; IT : Package: 4.50 LPA</td>
+                        </tr><tr>
+                            <td>33</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248817.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248817.png" alt="" style="width:80px"></a></td> 
+                            <td>My Captain</td>
+                            <td>All Branches : Package: 4.00 LPA</td>
+                        </tr><tr>
+                            <td>34</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248759.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248759.png" alt="" style="width:80px"></a></td> 
+                            <td>Yudiz Solutions</td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>35</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248706.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248706.png" alt="" style="width:80px"></a></td> 
+                            <td>Unschool </td>
+                            <td> All Branches: Package: 5.00 LPA </td>
+                        </tr><tr>
+                            <td>36</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248646.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248646.png" alt="" style="width:80px"></a></td> 
+                            <td>Hexaware</td>
+                            <td>COMP, IT, ENTC &amp; Electrical: Package: 4.00 LPA </td>
+                        </tr><tr>
+                            <td>37</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248570.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248570.png" alt="" style="width:80px"></a></td> 
+                            <td>Acty System</td>
+                            <td>COMP &amp; IT : Package: 3.65 LPA</td>
+                        </tr><tr>
+                            <td>38</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248506.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248506.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Webtech Developers</td>
+                            <td>COMP &amp; IT : Package: 4.50 LPA</td>
+                        </tr><tr>
+                            <td>39</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248452.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248452.png" alt="" style="width:80px"></a></td> 
+                            <td>Aloha Technologies</td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>40</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248359.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248359.png" alt="" style="width:80px"></a></td> 
+                            <td>Mobigic Technologies</td>
+                            <td>All Branches: Package: 3.50 LPA </td>
+                        </tr><tr>
+                            <td>41</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248292.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248292.png" alt="" style="width:80px"></a></td> 
+                            <td>Neosoft Technologies</td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>42</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248190.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248190.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Raja Software Labs</td>
+                            <td>for All Branches : Package 7.25  LPA </td>
+                        </tr><tr>
+                            <td>43</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248129.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248129.png" alt="" style="width:80px"></a></td> 
+                            <td>Sama Technology</td>
+                            <td>COMP &amp; IT: Package: 4.50 LPA</td>
+                        </tr><tr>
+                            <td>44</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654248038.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654248038.png" alt="" style="width:80px"></a></td> 
+                            <td>NewFold Digital </td>
+                            <td>for All Branches: Package: 3.24 LPA</td>
+                        </tr><tr>
+                            <td>45</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654247977.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654247977.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Zoho Corporation </td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>46</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240804.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240804.png" alt="" style="width:80px"></a></td> 
+                            <td>Mastek</td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>47</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240759.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240759.png" alt="" style="width:80px"></a></td> 
+                            <td>Collabera</td>
+                            <td>for All Branches: Package: 2.70 LPA</td>
+                        </tr><tr>
+                            <td>48</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240696.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240696.png" alt="" style="width:80px"></a></td> 
+                            <td>Renault Nissan </td>
+                            <td>MECH &amp; Electrical: Package: 4.75 LPA</td>
+                        </tr><tr>
+                            <td>49</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240634.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240634.png" alt="" style="width:80px"></a></td> 
+                            <td>KONE</td>
+                            <td>MECH : Package : 4.00 LPA</td>
+                        </tr><tr>
+                            <td>50</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240505.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240505.png" alt="" style="width:80px"></a></td> 
+                            <td>Pubmatic</td>
+                            <td>COMP &amp; IT: Package: 10.00 LPA</td>
+                        </tr><tr>
+                            <td>51</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240440.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240440.png" alt="" style="width:80px"></a></td> 
+                            <td>Xoriant</td>
+                            <td>COMP &amp; IT : Package: 4.00 LPA</td>
+                        </tr><tr>
+                            <td>52</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240390.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240390.png" alt="" style="width:80px"></a></td> 
+                            <td>Byjus</td>
+                            <td>for All Branches: Package: 6.00 LPA</td>
+                        </tr><tr>
+                            <td>53</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240308.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240308.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Icertis</td>
+                            <td>COMP &amp; IT: Package: 7.00 LPA</td>
+                        </tr><tr>
+                            <td>54</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240234.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240234.jpg" alt="" style="width:80px"></a></td> 
+                            <td>kanak software </td>
+                            <td>for All Branches : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>55</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654240144.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654240144.png" alt="" style="width:80px"></a></td> 
+                            <td>Bitwise Global</td>
+                            <td>COMP &amp; IT : Package: 4.00 LPA</td>
+                        </tr><tr>
+                            <td>56</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239954.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239954.png" alt="" style="width:80px"></a></td> 
+                            <td>Jade Global</td>
+                            <td>COMP &amp; IT : Package 3.50 LPA</td>
+                        </tr><tr>
+                            <td>57</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239834.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239834.png" alt="" style="width:80px"></a></td> 
+                            <td>CRMNext</td>
+                            <td>COMP, IT, ENTC &amp; Electrical : Package: 6.00 LPA</td>
+                        </tr><tr>
+                            <td>58</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239737.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239737.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Stavtar solutions</td>
+                            <td>COMP, IT, ENTC &amp; Electrical : Package: 5.00 LPA</td>
+                        </tr><tr>
+                            <td>59</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239652.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239652.png" alt="" style="width:80px"></a></td> 
+                            <td>Coditas</td>
+                            <td>for All Branches Package: 6.00 LPA</td>
+                        </tr><tr>
+                            <td>60</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239576.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239576.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Birlasoft</td>
+                            <td>COMP, IT, ENTC &amp; Electrical : Package: 3.60 LPA</td>
+                        </tr><tr>
+                            <td>61</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239528.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239528.png" alt="" style="width:80px"></a></td> 
+                            <td>NTT Data</td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>62</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239387.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239387.png" alt="" style="width:80px"></a></td> 
+                            <td>Faurecia </td>
+                            <td>MECH: Package: 4.5 LPA</td>
+                        </tr><tr>
+                            <td>63</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239266.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239266.png" alt="" style="width:80px"></a></td> 
+                            <td>IBM</td>
+                            <td>for All Branches Package: 4.50 LPA</td>
+                        </tr><tr>
+                            <td>64</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239218.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239218.png" alt="" style="width:80px"></a></td> 
+                            <td>Sankey Solutions</td>
+                            <td>COMP &amp; IT : Package: 3.50 LPA</td>
+                        </tr><tr>
+                            <td>65</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654239060.jpg" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654239060.jpg" alt="" style="width:80px"></a></td> 
+                            <td>Jaro</td>
+                            <td>for All Branches, Package: 6.00 LPA</td>
+                        </tr><tr>
+                            <td>66</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/1654238320.png" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/1654238320.png" alt="" style="width:80px"></a></td> 
+                            <td>Test Book</td>
+                            <td>for All Branches: Package: 4.00 LPA</td>
+                        </tr><tr>
+                            <td>67</td>
+                            <td><a href="https://engg.svpm.org.in/uploads/campus_drives/" title="" class="mfp-link"><img src="https://engg.svpm.org.in/uploads/campus_drives/" alt="" style="width:80px"></a></td> 
+                            <td>Campus Drive of ApMoSys Technologies on 07/06/2022</td>
+                            <td>for All Branches</td>
+                        </tr></tbody></table><h3 class="text-uppercase">Campus Drives 2020-21:</h3>
+                    <div class="dez-separator-outer ">
+                        <div class="dez-separator bg-primary style-liner">&nbsp;</div>
+                    </div>
+                    
+                </div>
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

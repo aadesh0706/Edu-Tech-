@@ -1,0 +1,53 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Attendance</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // script.js
+
+        // Add event listener to the Generate PDF button
+        document.getElementById('generatePdfBtn').addEventListener('click', () => {
+            // Send request to API endpoint to retrieve attendance data from MongoDB
+            fetch('/api/students/pdf')
+                .then(response => response.json())
+                .then(data => {
+                    // Create a new jsPDF document
+                    const doc = new jsPDF();
+                    doc.text('Student Attendance', 10, 10); // Add title to the PDF document
+                    const tableData = data.map((record, index) => [index + 1, record.fullname, record.email, record.Department,record.class1,record.gender]); // Format data as table rows
+                    doc.autoTable({
+                        startY: 20,
+                        head: [['#', 'Student Name', 'Email','Department','Class','Gender']],
+                        body: tableData
+                    });
+                    doc.save('student_attendance.pdf'); // Download the PDF document
+                })
+                .catch(error => console.error(error));
+        });
+
+    </script>
+</head>
+
+<body>
+    <h1>Student Attendance</h1>
+    <!-- Add a button for generating PDF -->
+    <button id="generatePdfBtn">Generate PDF</button>
+    <table id="attendanceTable">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Date</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody id="attendanceList"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <!-- Include jsPDF library -->
+    <script src="script.js"></script>
+</body>
+
+</html>
