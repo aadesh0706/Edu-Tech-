@@ -95,23 +95,6 @@ Contributions are welcome! Please fork, create a feature branch, and submit a pu
 
 📚 Inspiration & Recognition
 This project is part of the Edutech Era series, focused on immersive and interactive educational experiences using 3D visuals and peer-to-peer engagement 
-GitHub
-+8
-Devpost - The home for hackathons
-+8
-GitHub
-+8
-Wikipedia
-+8
-YouTube
-+8
-edutechera.com
-+8
-. Built during a college hackathon, it earned recognition for:
-
-Best Use of GitHub (coordinated design and CI/CD collaboration)
-
-Best Use of Google Cloud (Firebase Auth & Firestore integration)
 
 📄 License
 This project is open source under the MIT License. See the LICENSE file for details.
